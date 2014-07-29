@@ -6,10 +6,7 @@ $dataurl = elgg_extract('data-url', $vars, $vars['url'] . 'd3js/data');
 $content = '	<div id="visualization"></div>
 
 <!DOCTYPE html>
-<meta charset="utf-8">'
-//<link href='style.css' rel='stylesheet' type='text/css'>
-// CSS
-'<style type="text/css">
+<meta charset="utf-8"><style type="text/css">
 path{
 	fill-opacity:0.8;
 	stroke-opacity:0;
@@ -139,7 +136,7 @@ function distQuant(data, id){
 				var r= data.distMin+i*(data.distMax-data.distMin)/5; 
 				return Math.round(r*100)/100;
 			}else{ // for quantile graph, use label 20, 40, 60, and 80.
-				return (i*20)+'' %'';
+				return (i*20)+\' %\';
 			}	
 		}
 		
@@ -147,7 +144,7 @@ function distQuant(data, id){
 			if(type=="dist"){ // for dist use the maximum for sum of frequencies and divide it into 5 pieces.
 				return Math.round(maxT*i/5);
 			}else{ // for quantile graph, use percentages in increments of 20%.
-				return (i*20)+'' %'';
+				return (i*20)+\' %\';
 			}	
 		}
 		// add horizontal axis labels
