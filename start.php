@@ -7,6 +7,7 @@
 // Initialise log browser
 elgg_register_event_handler('init','system','elgg_d3js');
 
+
 /* Initialise the theme */
 function elgg_d3js(){
 	global $CONFIG;
@@ -14,15 +15,15 @@ function elgg_d3js(){
 	// CSS et JS
 	elgg_extend_view('css/elgg', 'elgg_d3js/css');
 	
+	// d3js functions
+	elgg_register_js('elgg:elgg_d3js', '/mod/elgg_d3js/vendors/d3/d3.min.js', 'head');
 /*
-	elgg_register_js('elgg_d3js:dialog', '/mod/elgg_d3js/vendors/d3js/soap/include/dialog.js', 'head');
+	elgg_register_js('elgg_d3js:dialog', '/mod/elgg_d3js/vendors/d3js/soap/include/dialog.js');
 	elgg_load_js('elgg_d3js:dialog');
 	
-	//elgg_load_js('lightbox');
+	
 	//elgg_load_css('lightbox');
 
-	// Custom d3js functions
-	elgg_register_library('elgg:elgg_d3js', elgg_get_plugins_path() . 'elgg_d3js/lib/elgg_d3js.php');
 	
 	// d3js widgets - add only if enabled
 	if (elgg_get_plugin_setting('widget_mine', 'elgg_d3js') == 'yes') 

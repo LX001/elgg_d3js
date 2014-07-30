@@ -1,8 +1,15 @@
 <?php
+/*
+Taken from 
+*/
 
-$url = $vars['url'] . 'mod/elgg_d3js/vendors/';
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $dataurl = elgg_extract('data-url', $vars, $vars['url'] . 'd3js/data');
+
+$width = elgg_extract('width', $vars, "1280");
+$height = elgg_extract('height', $vars, "800");
+
+
 $content = '	<div id="visualization"></div>
 
 <style type="text/css">
@@ -21,13 +28,12 @@ line.link {
 
 </style>
 	
-	<script type="text/javascript" src="' . $url . 'd3/d3.js"></script>
-    <script type="text/javascript" src="' . $liburl . 'd3.geom.js"></script>
-    <script type="text/javascript" src="' . $liburl . 'd3.layout.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript" src="' . $liburl . 'd3.geom.js"></script>
+<script type="text/javascript" src="' . $liburl . 'd3.layout.js"></script>
+<script type="text/javascript">
 
-var w = 1280,
-    h = 800,
+var w = ' . $width .',
+    h = ' . $height .',
     node,
     link,
     root;
