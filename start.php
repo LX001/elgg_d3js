@@ -41,14 +41,7 @@ function elgg_d3js_page_handler($page) {
 			if (!include_once "$base/data.php") return false;
 			break;
 		case 'view':
-		switch($page[1]) {
-			case 'd3js_cfl':
-				set_input('d3js_cfl', $page[1]);
-				break;
-			case 'd3js_sdg':
-				set_input('d3js_sdg', $page[1]);
-				break;
-		}
+			if (isset($page[1])) set_input('viztype', $page[1]);
 			if (!include_once "$base/view.php") return false;
 			break;
 		case 'edit':

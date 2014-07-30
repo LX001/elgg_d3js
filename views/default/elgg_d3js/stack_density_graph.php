@@ -5,8 +5,7 @@ $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $dataurl = elgg_extract('data-url', $vars, $vars['url'] . 'd3js/data');
 $content = '	<div id="visualization"></div>
 
-<!DOCTYPE html>
-<meta charset="utf-8"><style type="text/css">
+<style type="text/css">
 path{
 	fill-opacity:0.8;
 	stroke-opacity:0;
