@@ -3,7 +3,9 @@
 Taken from http://bl.ocks.org/NPashaP/113f7fea0751fa1513e1#index.html
 */
 
-$dataurl = elgg_extract('data-url', $vars, $vars['url'] . '/elgg_d3js/data/SDGdata.js');
+$dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'mod/elgg_d3js/data/SDGdata.js');
+
+//Parametrer hauteur et largeur
 $width = elgg_extract('width', $vars, "400");
 $height = elgg_extract('height', $vars, "300");
 
@@ -29,20 +31,18 @@ path{
 	color:rgb(150,148,109);
 	font-size:12px;
 }
-body{
-	width:1150px;
-	margin:10px auto;
-}
+
+
 svg{
 	display:inline;
 	float:left;
+	margin-right:2%;
 }
 .legend{
 	display:inline-block;
-	margin:10px;
-	margin-top:30px;
+	margin:0 0 0 10px;
 	margin-left:0;
-	max-height:280px;
+	max-height:' . $height . 'px;
 	min-width:190px;
 	overflow:auto;
 }
@@ -92,7 +92,7 @@ function distQuant(data, id){
 	function getPointsZero(_, i, k){		return _.map(function(d,j){ return {x:j, y:(i==k ? d[i] : 0 )};});	}
 	function toComma(x) {    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 		
-	var width=' . $width . ', height=' . $height . ', margin=20;
+	var width=' . $width . ', height=' . $height . ', margin=0;
 	var colors = ["#7D74FE","#7DFF26","#F84F1B","#28D8D5","#FB95B6","#9D9931","#F12ABF","#27EA88","#549AD5","#FEA526","#7B8D8B","#BB755F","#432E16",
 "#D75CFB","#44E337","#51EBE3","#ED3D24","#4069AE","#E1CC72","#E33E88","#D8A3B3","#428B50","#66F3A3","#E28A2A","#B2594D","#609297","#E8F03F","#3D2241",
 "#954EB3","#6A771C","#58AE2E","#75C5E9","#BBEB85","#A7DAB9","#6578E6","#932C5F","#865A26","#CC78B9","#2E5A52","#8C9D79","#9F6270","#6D3377","#551927","#DE8D5A",

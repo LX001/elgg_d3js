@@ -1,11 +1,12 @@
 <?php
 /*
-Taken from 
+Taken from http://mbostock.github.io/d3/talk/20111116/force-collapsible.html
 */
 
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
-$dataurl = elgg_extract('data-url', $vars, $vars['url'] . 'd3js/data');
+$dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
+//parametrer hauteur et largeur
 $width = elgg_extract('width', $vars, "1280");
 $height = elgg_extract('height', $vars, "800");
 
