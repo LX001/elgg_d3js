@@ -4,11 +4,13 @@ $json = new stdClass();
 $json->name = 'site';
 $json->children = array();
 
+// @TODO : memory overflow on big sites with many users and groups (3k users, about 100 groups)
 $groups = elgg_get_entities(array('types' => 'group', 'limit' => 0));
 foreach($groups as $group) {
 	$point = new stdClass();
 	$point->name = $group->name;
 	$point->children = array();
+	/*
 	$members = $group->getMembers(0,0, false);
 	foreach($members as $member) {
 		$leaf = new stdClass();
@@ -16,6 +18,16 @@ foreach($groups as $group) {
 		$leaf->size = 1000;
 		$point->children[] = $leaf;
 	}
+	*/
+	// Note : replaced by a member count (we do not care, as we don't display the names...)
+	$count_members = $group->getMembers(0,0, true);
+	for ($i = 0; $i < $count_members; $i++) {
+		$leaf = new stdClass();
+		$leaf->name = "member" . $i;
+		$leaf->size = 1000;
+		$point->children[] = $leaf;
+	}
+	
 	$json->children[] = $point;
 }
 //echo json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); // PHP 5.4+
