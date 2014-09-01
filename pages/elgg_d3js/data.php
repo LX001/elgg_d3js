@@ -8,7 +8,10 @@ switch($viztype){
 //data for SDG
 	case 'd3js_sdg' :		
 		break;
-// data for CFL
+/* 
+data for  collapsible force layout viz
+you can replace name & size value for each variable
+*/
 	case 'd3js_cfl' :
 		$json = new stdClass();
 		$json->name = 'site';
@@ -30,8 +33,73 @@ switch($viztype){
 		//echo json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); // PHP 5.4+
 		echo json_encode($json);
 		break;
+/* 
+data for  bubble chart viz
+you can replace name & size value for each variable
+*/
+	case 'd3js_bubble' :
+		$json = new stdClass();
+		$json->name = 'site';
+		$json->children = array();
+		$groups = elgg_get_entities(array('types' => 'group', 'limit' => 0));
+		foreach($groups as $group) {
+			$point = new stdClass();
+			$point->name = $group->name;
+			$point->size = 2000;
+			$point->children = array();
+			$members = $group->getMembers(0,0, false);
+			foreach($members as $member) {
+				$leaf = new stdClass();
+				$leaf->name = $member->name;
+				$leaf->size = 1000;
+				$point->children[] = $leaf;
+			}
+			$json->children[] = $point;
+		}
+		//echo json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); // PHP 5.4+
+		echo json_encode($json);
+		break;
+/* 
+data for  circle packing viz
+you can replace name & size value for each variable
+*/
+	case 'd3js_circle' :
+		$json = new stdClass();
+		$json->name = 'site';
+		$json->children = array();
+		$groups = elgg_get_entities(array('types' => 'group', 'limit' => 0));
+		foreach($groups as $group) {
+			$point = new stdClass();
+			$point->name = $group->name;
+			$point->size = 2000;
+			$point->children = array();
+			$members = $group->getMembers(0,0, false);
+			foreach($members as $member) {
+				$leaf = new stdClass();
+				$leaf->name = $member->name;
+				$leaf->size = 1000;
+				$point->children[] = $leaf;
+			}
+			$json->children[] = $point;
+		}
+		//echo json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); // PHP 5.4+
+		echo json_encode($json);
+		break;
+
+	case 'd3js_pie' :
+		$json = array();
+		$groups = elgg_get_entities(array('types' => 'group', 'limit' => 0));
+		foreach($groups as $group) {
+			$point = new stdClass();
+			$point->name = $group->name;
+			$point->size = $group->getMembers(0,0, true);
+			$json[]=$point;
+		}
+		echo json_encode($json);
+		break;
 }
 //echo print_r($json, true);
+
 
 
 

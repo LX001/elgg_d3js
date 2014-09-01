@@ -4,6 +4,7 @@ Taken from http://bl.ocks.org/mbostock/4063269#index.html
 */
 
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
+$dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
 $content = '<div id="visualization"></div>
 <style>
@@ -29,7 +30,7 @@ var svg = d3.select("body #visualization").append("svg")
     .attr("height", diameter)
     .attr("class", "bubble");
 
-d3.json("' . $liburl . 'flare.json", function(error, root) {
+d3.json("' . $dataurl . '", function(error, root) {
   var node = svg.selectAll(".node")
       .data(bubble.nodes(classes(root))
       .filter(function(d) { return !d.children; }))

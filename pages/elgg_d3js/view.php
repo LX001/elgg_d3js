@@ -15,19 +15,17 @@ if (!empty($viztype)) elgg_push_breadcrumb(elgg_echo($viztype));
 
 elgg_load_js('elgg:elgg_d3js');
 
-
+//call a view corresponding to a vizualisation
 switch($viztype)
 {
 	case 'd3js_cfl' :
 		$content = elgg_view('elgg_d3js/collapsible_force_layout',array('dataurl' => $dataurl));
 		break;
 	case 'd3js_bubble' :
-		$data_url .= $dataurl;
-		$content = elgg_view('elgg_d3js/bubble_chart',array('dataurl' => $data_url));
+		$content = elgg_view('elgg_d3js/bubble_chart',array('dataurl' => $dataurl));
 		break;
 	case 'd3js_circle' :
-		$data_url .= $dataurl;
-		$content = elgg_view('elgg_d3js/circle_packing',array('dataurl' => $data_url));
+		$content = elgg_view('elgg_d3js/circle_packing',array('dataurl' => $dataurl));
 		break;
 	case 'd3js_scatter' :
 		$data_url .= 'data.tsv';
@@ -39,13 +37,15 @@ switch($viztype)
 		break;
 	case 'd3js_radar' :
 			$data = array();
-		/*Name of the variable compared
+		/*
+		Name of the variable compared
 		They need to have the same number of axes and the same axes's name
 		Variable's name order have to be the same of the declaration order of axes
 		*/
 		$typeName = array("Smartphone","Tablets","Test");
 		$objects = json_encode($typeName);
-		/*Data displayed of the axes
+		/*
+		Data displayed of the axes
 		All the data possess the same structure : 'axis'=>"Name of the variable" and 'value'=> "Value of the varible"
 		The name of the axes have to be the same
 		*/
@@ -65,8 +65,8 @@ switch($viztype)
 		$content .= elgg_view('elgg_d3js/radar_chart',array('data' => $data,'objects' => $objects,'description' => $description, 'size' => 0.5));
 		break;
 	case 'd3js_pie' :
-		$data_url .= 'data.csv';
-		$content = elgg_view('elgg_d3js/pie_chart',array('dataurl' => $data_url));
+		$content = elgg_view('elgg_d3js/pie_chart',array('dataurl' => $dataurl));
+		$content .= elgg_view('elgg_d3js/pie_chart',array('dataurl' => $dataurl));
 		break;
 	default :
 		register_error("Aucune visualisation choisie");

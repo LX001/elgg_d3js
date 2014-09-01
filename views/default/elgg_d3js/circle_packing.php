@@ -44,7 +44,7 @@ var svg = d3.select("body #visualization").append("svg")
   .append("g")
     .attr("transform", "translate(2,2)");
 
-d3.json("' . $liburl . 'flare.json", function(error, root) {
+d3.json("' . $dataurl . '", function(error, root) {
   var node = svg.datum(root).selectAll(".node")
       .data(pack.nodes)
     .enter().append("g")
