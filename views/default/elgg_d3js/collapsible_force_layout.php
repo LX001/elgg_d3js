@@ -2,7 +2,7 @@
 /*
 Taken from http://mbostock.github.io/d3/talk/20111116/force-collapsible.html
 */
-
+if (isset($page[1])) set_input('viztype', $page[1]);
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
@@ -150,4 +150,5 @@ function flatten(root) {
 	';
 	
 	
+
 echo $content;

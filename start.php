@@ -39,6 +39,7 @@ function elgg_d3js_page_handler($page) {
 	$base = elgg_get_plugins_path() . 'elgg_d3js/pages/elgg_d3js';
 	switch($page[0]) {
 		case 'data':
+			if (isset($page[1])) set_input('viztype', $page[1]);
 			if (!include_once "$base/data.php") return false;
 			break;
 		case 'view':

@@ -1,15 +1,42 @@
 <?php
 
-$dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'mod/elgg_d3js/data/radardata.js');
+$liburl = $vars['url'] . 'mod/elgg_d3js/data/';
+$data = elgg_extract('data', $vars);
+$objects = elgg_extract('objects', $vars);
+$description = elgg_extract('description', $vars);
+$size = elgg_extract('size', $vars, 1);
+$size = $size*600;
 
-$content = '	<div id="visualization"></div>
-<script>
+global $elgg_d3js_unique_id;
+if(!isset($elgg_d3js_unique_id)) $elgg_d3js_unique_id = 1;
+else $elgg_d3js_unique_id++;
+$id = 'd3js_chart_' . $elgg_d3js_unique_id;
+
+//Data
+
+/*
+//Get name & number of members for each group
+$json = new stdClass();
+$json->axes = array();
+$groups = elgg_get_entities(array('types' => 'group', 'limit' => 0));
+foreach($groups as $group) {
+	$point = new stdClass();
+	$point->axis = $group->name;
+	$point->value = $group->getMembers(0,0, true);
+	$json->axes[] = $point;
+}
+*/
+
+
+
+
+$content = '<script>
 var RadarChart = {
   draw: function(id, d, options){
   var cfg = {
 	 radius: 5,
-	 w: 600,
-	 h: 600,
+	 w: ' . $size . ',
+	 h: ' . $size . ',
 	 factor: 1,
 	 factorLegend: .85,
 	 levels: 3,
@@ -19,7 +46,7 @@ var RadarChart = {
 	 ToRight: 5,
 	 TranslateX: 80,
 	 TranslateY: 30,
-	 ExtraWidthX: 100,
+	 ExtraWidthX: ' . $size/6 . ',
 	 ExtraWidthY: 100,
 	 color: d3.scale.category10()
 	};
@@ -217,81 +244,29 @@ var RadarChart = {
 };
 </script>
 <style type="text/css">
-	body {
-		margin: 0;
-		font-size: 14px;
-		font-family: "Helvetica Neue", Helvetica;
-	}
-
-	#chart {
-
+	#' . $id . ' {
 		top: 50px;
 		left: 100px;
-	}	
+	}
+	
+	#' . $id . ' > svg { border: 1px solid black; }
 </style>
-<body>
-    <div id="body">
-	  <div id="chart"></div>
-    </div>
+
+
+<div id="' . $id . '"></div>
+
 <script>	
-	var w = 500,
-	h = 500;
+	var w = ' . $size . ',
+	h = ' . $size . ';
 
 var colorscale = d3.scale.category10();
 
 //Legend titles
-var LegendOptions = [\'Smartphone\',\'Tablet\'];
+var LegendOptions = ' . $objects . ';
 
 //Data
-var d = [
-		  [
-			{axis:"Email",value:0.59},
-			{axis:"Social Networks",value:0.56},
-			{axis:"Internet Banking",value:0.42},
-			{axis:"News Sportsites",value:0.34},
-			{axis:"Search Engine",value:0.48},
-			{axis:"View Shopping sites",value:0.14},
-			{axis:"Paying Online",value:0.11},
-			{axis:"Buy Online",value:0.05},
-			{axis:"Stream Music",value:0.07},
-			{axis:"Online Gaming",value:0.12},
-			{axis:"Navigation",value:0.27},
-			{axis:"App connected to TV program",value:0.03},
-			{axis:"Offline Gaming",value:0.12},
-			{axis:"Photo Video",value:0.4},
-			{axis:"Reading",value:0.03},
-			{axis:"Listen Music",value:0.22},
-			{axis:"Watch TV",value:0.03},
-			{axis:"TV Movies Streaming",value:0.03},
-			{axis:"Listen Radio",value:0.07},
-			{axis:"Sending Money",value:0.18},
-			{axis:"Other",value:0.07},
-			{axis:"Use less Once week",value:0.08}
-		  ],[
-			{axis:"Email",value:0.48},
-			{axis:"Social Networks",value:0.41},
-			{axis:"Internet Banking",value:0.27},
-			{axis:"News Sportsites",value:0.28},
-			{axis:"Search Engine",value:0.46},
-			{axis:"View Shopping sites",value:0.29},
-			{axis:"Paying Online",value:0.11},
-			{axis:"Buy Online",value:0.14},
-			{axis:"Stream Music",value:0.05},
-			{axis:"Online Gaming",value:0.19},
-			{axis:"Navigation",value:0.14},
-			{axis:"App connected to TV program",value:0.06},
-			{axis:"Offline Gaming",value:0.24},
-			{axis:"Photo Video",value:0.17},
-			{axis:"Reading",value:0.15},
-			{axis:"Listen Music",value:0.12},
-			{axis:"Watch TV",value:0.1},
-			{axis:"TV Movies Streaming",value:0.14},
-			{axis:"Listen Radio",value:0.06},
-			{axis:"Sending Money",value:0.16},
-			{axis:"Other",value:0.07},
-			{axis:"Use less Once week",value:0.17}
-		  ]
-		];
+var d = ' . $data . ';
+
 
 //Options for the Radar chart, other than default
 var mycfg = {
@@ -299,21 +274,21 @@ var mycfg = {
   h: h,
   maxValue: 0.6,
   levels: 6,
-  ExtraWidthX: 300
+  ExtraWidthX: 250
 }
 
 //Call function to draw the Radar chart
 //Will expect that data is in %\'s
-RadarChart.draw("#chart", d, mycfg);
+RadarChart.draw("#' . $id . '", d, mycfg);
 
 ////////////////////////////////////////////
 /////////// Initiate legend ////////////////
 ////////////////////////////////////////////
 
-var svg = d3.select(\'#body\')
+var svg = d3.select(\'#' . $id . '\')
 	.selectAll(\'svg\')
 	.append(\'svg\')
-	.attr("width", w+300)
+	.attr("width", w+' . ($size) . ')
 	.attr("height", h)
 
 //Create the title for the legend
@@ -324,13 +299,13 @@ var text = svg.append("text")
 	.attr("y", 10)
 	.attr("font-size", "12px")
 	.attr("fill", "#404040")
-	.text("What % of owners use a specific service in a week");
+	.text("' . $description . '");
 		
 //Initiate Legend	
 var legend = svg.append("g")
 	.attr("class", "legend")
-	.attr("height", 100)
-	.attr("width", 200)
+	.attr("height", ' . ($size/6) . ')
+	.attr("width", ' . ($size/3) . ')
 	.attr(\'transform\', \'translate(90,20)\') 
 	;
 	//Create colour squares
@@ -355,11 +330,6 @@ var legend = svg.append("g")
 	  .attr("fill", "#737373")
 	  .text(function(d) { return d; })
 	  ;	
-</script>
-</body>
-
-
-
-';
+</script>';
 
 echo $content;

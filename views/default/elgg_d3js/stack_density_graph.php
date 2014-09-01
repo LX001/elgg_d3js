@@ -3,7 +3,7 @@
 Taken from http://bl.ocks.org/NPashaP/113f7fea0751fa1513e1#index.html
 */
 
-$dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'mod/elgg_d3js/data/SDGdata.js');
+$liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 
 //Parametrer hauteur et largeur
 $width = elgg_extract('width', $vars, "400");
@@ -82,13 +82,13 @@ svg{
 </style>
 
 <div id="contentDiv"></div>
-<script type="text/javascript" src="' . $dataurl . '"></script>
+<script type="text/javascript" src="' . $liburl . 'SDGdata.js"></script>
 
 <script>
 function distQuant(data, id){
 
 	function getPoints(_, i){		return _.map(function(d,j){ return {x:j, y:d[i]};});	}
-	/* function to return 0 for all attributes except k-th attribute.*/
+	// function to return 0 for all attributes except k-th attribute.
 	function getPointsZero(_, i, k){		return _.map(function(d,j){ return {x:j, y:(i==k ? d[i] : 0 )};});	}
 	function toComma(x) {    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 		
