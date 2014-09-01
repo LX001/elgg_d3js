@@ -6,9 +6,12 @@ Taken from http://mbostock.github.io/d3/talk/20111116/pack-hierarchy.html
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
+global $elgg_d3js_unique_id;
+if(!isset($elgg_d3js_unique_id)) $elgg_d3js_unique_id = 1;
+else $elgg_d3js_unique_id++;
+$id = 'd3js_chart_' . $elgg_d3js_unique_id;
 
-
-$content = '	<div id="visualization"></div>
+$content = '	<div id="' . $id . '"></div>
 <style>
 
 circle {
@@ -38,7 +41,7 @@ var pack = d3.layout.pack()
     .size([diameter - 4, diameter - 4])
     .value(function(d) { return d.size; });
 
-var svg = d3.select("body #visualization").append("svg")
+var svg = d3.select("#' . $id . '").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
   .append("g")

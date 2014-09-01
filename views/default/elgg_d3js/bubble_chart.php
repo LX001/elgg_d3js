@@ -6,7 +6,12 @@ Taken from http://bl.ocks.org/mbostock/4063269#index.html
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
-$content = '<div id="visualization"></div>
+global $elgg_d3js_unique_id;
+if(!isset($elgg_d3js_unique_id)) $elgg_d3js_unique_id = 1;
+else $elgg_d3js_unique_id++;
+$id = 'd3js_chart_' . $elgg_d3js_unique_id;
+
+$content = '<div id="' . $id . '"></div>
 <style>
 
 text {
@@ -25,7 +30,7 @@ var bubble = d3.layout.pack()
     .size([diameter, diameter])
     .padding(1.5);
 
-var svg = d3.select("body #visualization").append("svg")
+var svg = d3.select("#' . $id . '").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
     .attr("class", "bubble");
