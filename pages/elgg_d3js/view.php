@@ -31,6 +31,10 @@ switch($viztype)
 		$data_url .= 'data.tsv';
 		$content = elgg_view('elgg_d3js/scatter_plot',array('dataurl' => $data_url));
 		break;
+	case 'd3js_line' :
+		$data_url .= 'data2.tsv';
+		$content = elgg_view('elgg_d3js/line_chart',array('dataurl' => $data_url));
+		break;
 	case 'd3js_sdg' :
 		$data_url .= 'SDGdata.js';
 		$content = elgg_view('elgg_d3js/stack_density_graph',array('dataurl' => $data_url));

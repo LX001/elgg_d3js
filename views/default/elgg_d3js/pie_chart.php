@@ -18,7 +18,7 @@ $content = '	<div id="' . $id . '"></div>
   stroke: #fff;
 }
 	#' . $id . ' {
-			float:left;
+		float:left;
 	}
 	
 

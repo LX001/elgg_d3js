@@ -95,13 +95,13 @@ var RadarChart = {
 
 	//Text indicating at what % each level is
 	for(var j=0; j<cfg.levels; j++){
-	  var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
+	  var levelFactor = j+1; //cfg.factor*radius*((j+1)/cfg.levels);
 	  g.selectAll(".levels")
 	   .data([1]) //dummy data
 	   .enter()
 	   .append("svg:text")
-	   .attr("x", function(d){return levelFactor*(1-cfg.factor*Math.sin(0));})
-	   .attr("y", function(d){return levelFactor*(1-cfg.factor*Math.cos(0));})
+	   .attr("x", function(d){return levelFactor;}) //*(1-cfg.factor*Math.sin(0));})
+	   .attr("y", function(d){return levelFactor;}) //*(1-cfg.factor*Math.cos(0));})
 	   .attr("class", "legend")
 	   .style("font-family", "sans-serif")
 	   .style("font-size", "10px")

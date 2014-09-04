@@ -21,6 +21,7 @@ $content .= '<p><a href="' . $url . 'd3js_bubble" class="elgg-button elgg-button
 $content .= '<p><a href="' . $url . 'd3js_scatter" class="elgg-button elgg-button-action">Scatter plot</a></p>';
 $content .= '<p><a href="' . $url . 'd3js_circle" class="elgg-button elgg-button-action">Circle packing</a></p>';
 $content .= '<p><a href="' . $url . 'd3js_pie" class="elgg-button elgg-button-action">Pie chart</a></p>';
+$content .= '<p><a href="' . $url . 'd3js_line" class="elgg-button elgg-button-action">Line chart</a></p>';
 
 $title = elgg_echo('elgg_d3js:everyone');
 
