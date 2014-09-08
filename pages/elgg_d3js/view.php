@@ -20,6 +20,7 @@ elgg_load_js('elgg:elgg_d3js');
 
 // Call a view corresponding to a visualisation
 switch($viztype) {
+	
 	case 'd3js_cfl' :
 		$content = elgg_view('elgg_d3js/collapsible_force_layout',array('dataurl' => $dataurl));
 		break;
