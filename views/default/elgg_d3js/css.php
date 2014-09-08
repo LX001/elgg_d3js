@@ -1,7 +1,40 @@
+/* Visualisations default CSS
+ * Override in your theme or plugin using a custom class or id to customise to your needs 
+ */
+
+/* Collapsible force layout : .d3js-d3js_line */
+
+/* Stack density graph : .d3js-d3js_line */
+
+/* Radar chart : .d3js-d3js_line */
+
+/* Bubble chart : .d3js-d3js_line */
+
+/* Scatter plot : .d3js-d3js_scatter */
+.d3js-d3js_scatter {
+  font: 10px sans-serif;
+}
+
+.d3js-d3js_scatter .axis path,
+.d3js-d3js_scatter .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.d3js-d3js_scatter .dot {
+  stroke: #000;
+}
 
 
-/* Line chart */
+/* Circle packing : .d3js-d3js_line */
 
+/* Pie chart : .d3js-d3js_line */
+
+
+
+
+/* Line chart : .d3js-d3js_line */
 .d3js-d3js_line .axis path,
 .d3js-d3js_line .axis line {
 	fill: none;

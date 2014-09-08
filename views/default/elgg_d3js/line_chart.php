@@ -7,8 +7,9 @@ Taken from http://bl.ocks.org/mbostock/3883245
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
-
+// Block id
 $id = elgg_extract('id', $vars, 'd3js-line-chart');
+
 // Axis labels
 $xlabel = elgg_extract('xlabel', $vars, 'Time');
 $ylabel = elgg_extract('ylabel', $vars, 'Value');
@@ -18,7 +19,6 @@ $h = elgg_extract('height', $vars, 500);
 
 
 $content = '<div id="' . $id . '"></div>
-
 <script>
 var margin = {top: 20, right: 50, bottom: 30, left: 50},
 		width = ' . $w . ' - margin.left - margin.right,
@@ -120,7 +120,6 @@ d3.tsv("' . $liburl . 'data2.tsv", function(error, data) {
 		focus.select("text").text(formatCurrency(d.close));
 	}
 });
-
 </script>';
 
 
