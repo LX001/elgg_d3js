@@ -10,7 +10,7 @@ $id = elgg_extract('id', $vars, 'd3js-scatter-plot');
 // Axis labels
 $xlabel = elgg_extract('xlabel', $vars, 'Criteria A');
 $ylabel = elgg_extract('ylabel', $vars, 'Criteria B');
-// Dimensiosn
+// Dimensions
 $w = elgg_extract('width', $vars, 960);
 $h = elgg_extract('height', $vars, 500);
 

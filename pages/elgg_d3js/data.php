@@ -20,6 +20,10 @@ you can replace name & size value for each variable
 		foreach($groups as $group) {
 			$point = new stdClass();
 			$point->name = $group->name;
+			// Be nice to the database when we have hundreds or groups and users !
+			$members_count = $group->getMembers(0,0, true);
+			$point->size = $members_count * 100;
+			/*
 			$point->children = array();
 			$members = $group->getMembers(0,0, false);
 			foreach($members as $member) {
@@ -28,6 +32,7 @@ you can replace name & size value for each variable
 				$leaf->size = 1000;
 				$point->children[] = $leaf;
 			}
+			*/
 			$json->children[] = $point;
 		}
 		//echo json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); // PHP 5.4+
@@ -46,6 +51,10 @@ you can replace name & size value for each variable
 			$point = new stdClass();
 			$point->name = $group->name;
 			$point->size = 2000;
+			// Be nice to the database when we have hundreds or groups and users !
+			$members_count = $group->getMembers(0,0, true);
+			$point->size = $members_count * 100;
+			/*
 			$point->children = array();
 			$members = $group->getMembers(0,0, false);
 			foreach($members as $member) {
@@ -54,6 +63,7 @@ you can replace name & size value for each variable
 				$leaf->size = 1000;
 				$point->children[] = $leaf;
 			}
+			*/
 			$json->children[] = $point;
 		}
 		//echo json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); // PHP 5.4+
@@ -72,6 +82,10 @@ you can replace name & size value for each variable
 			$point = new stdClass();
 			$point->name = $group->name;
 			$point->size = 2000;
+			// Be nice to the database when we have hundreds or groups and users !
+			$members_count = $group->getMembers(0,0, true);
+			$point->size = $members_count * 100;
+			/*
 			$point->children = array();
 			$members = $group->getMembers(0,0, false);
 			foreach($members as $member) {
@@ -80,6 +94,7 @@ you can replace name & size value for each variable
 				$leaf->size = 1000;
 				$point->children[] = $leaf;
 			}
+			*/
 			$json->children[] = $point;
 		}
 		//echo json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); // PHP 5.4+

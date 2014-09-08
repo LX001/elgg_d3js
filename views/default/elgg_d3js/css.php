@@ -29,8 +29,10 @@
 
 /* Circle packing : .d3js-d3js_line */
 
-/* Pie chart : .d3js-d3js_line */
-
+/* Pie chart : .d3js-d3js_pie */
+.d3js-d3js_pie .arc path {
+	stroke: #fff;
+}
 
 
 
@@ -43,7 +45,7 @@
 }
 
 .d3js-d3js_line .x.axis path {
-	display: none;
+	/* display: none; */
 }
 
 .d3js-d3js_line .line {
