@@ -10,8 +10,10 @@ $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 $width = elgg_extract('width', $vars, "1280");
 $height = elgg_extract('height', $vars, "800");
 
+$id = elgg_extract('id', $vars, 'd3js-scatter-plot');
 
-$content = '	<div id="visualization"></div>
+
+$content = '	<div id="' . $id . '"></div>
 
 <style type="text/css">
 
@@ -45,7 +47,7 @@ var force = d3.layout.force()
     .linkDistance(function(d) { return d.target._children ? 80 : 30; })
     .size([w, h - 160]);
 
-var vis = d3.select("body #visualization").append("svg:svg")
+var vis = d3.select("body #' . $id . '").append("svg:svg")
     .attr("width", w)
     .attr("height", h);
 

@@ -5,30 +5,21 @@ Taken from http://bl.ocks.org/mbostock/3887118#index.html
 
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 
-$content = '<div id="visualization"></div>
-<style>
+$id = elgg_extract('id', $vars, 'd3js-scatter-plot');
 
-body {
-  font: 10px sans-serif;
-}
+// Axis labels
+$xlabel = elgg_extract('xlabel', $vars, 'Criteria A');
+$ylabel = elgg_extract('ylabel', $vars, 'Criteria B');
+// Dimensiosn
+$w = elgg_extract('width', $vars, 960);
+$h = elgg_extract('height', $vars, 500);
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+$content = '<div id="' . $id . '"></div>
 
-.dot {
-  stroke: #000;
-}
-
-</style>
 <script>
-
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = ' . $w . ' - margin.left - margin.right,
+    height = ' . $h . ' - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
     .range([0, width]);
@@ -46,7 +37,7 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var svg = d3.select("body #visualization").append("svg")
+var svg = d3.select("body #' . $id . '").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -70,7 +61,7 @@ d3.tsv("' . $liburl . 'data.tsv", function(error, data) {
       .attr("x", width)
       .attr("y", -6)
       .style("text-anchor", "end")
-      .text("Sepal Width (cm)");
+      .text("' . $xlabel . '");
 
   svg.append("g")
       .attr("class", "y axis")
@@ -81,7 +72,7 @@ d3.tsv("' . $liburl . 'data.tsv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Sepal Length (cm)")
+      .text("' . $ylabel . '")
 
   svg.selectAll(".dot")
       .data(data)
@@ -112,7 +103,7 @@ d3.tsv("' . $liburl . 'data.tsv", function(error, data) {
       .text(function(d) { return d; });
 
 });
+</script>';
 
-</script>'
-;
 echo $content;
+

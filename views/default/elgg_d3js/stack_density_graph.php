@@ -9,6 +9,9 @@ $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $width = elgg_extract('width', $vars, "400");
 $height = elgg_extract('height', $vars, "300");
 
+$id = elgg_extract('id', $vars, 'd3js-density-stack');
+
+
 $content = '
 <style type="text/css">
 path{
@@ -81,7 +84,7 @@ svg{
 }
 </style>
 
-<div id="contentDiv"></div>
+<div id="' . $id . '"></div>
 <script type="text/javascript" src="' . $liburl . 'SDGdata.js"></script>
 
 <script>
@@ -300,7 +303,7 @@ function drawAll(data, id){
 		
 	d3.range(data.length).forEach(function(d,i){ distQuant(dqData[i], "segment"+i );});
 }
-drawAll(dqData, "contentDiv");
+drawAll(dqData, "' . $id . '");
 
 </script>';
 

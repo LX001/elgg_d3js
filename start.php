@@ -13,7 +13,7 @@ function elgg_d3js(){
 	global $CONFIG;
 	
 	// CSS et JS
-	elgg_extend_view('css/elgg', 'elgg_d3js/css');
+	elgg_extend_view('css', 'elgg_d3js/css');
 	
 	// d3js functions
 	elgg_register_js('elgg:elgg_d3js', '/mod/elgg_d3js/vendors/d3/d3.min.js', 'head');
