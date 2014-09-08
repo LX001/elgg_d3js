@@ -9,13 +9,20 @@ $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
 
 $id = elgg_extract('id', $vars, 'd3js-line-chart');
+// Axis labels
+$xlabel = elgg_extract('xlabel', $vars, 'Time');
+$ylabel = elgg_extract('ylabel', $vars, 'Value');
+// Dimensiosn
+$w = elgg_extract('width', $vars, 960);
+$h = elgg_extract('height', $vars, 500);
+
 
 $content = '<div id="' . $id . '"></div>
 
 <script>
 var margin = {top: 20, right: 50, bottom: 30, left: 50},
-		width = 960 - margin.left - margin.right,
-		height = 500 - margin.top - margin.bottom;
+		width = ' . $w . ' - margin.left - margin.right,
+		height = ' . $h . ' - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%d-%b-%y").parse,
 		bisectDate = d3.bisector(function(d) { return d.date; }).left,
@@ -62,7 +69,12 @@ d3.tsv("' . $liburl . 'data2.tsv", function(error, data) {
 	svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + height + ")")
-			.call(xAxis);
+			.call(xAxis)
+		.append("text")
+			.attr("y", 20)
+			.attr("dx", "1em")
+			.style("text-anchor", "start")
+			.text("' . $xlabel . '");
 
 	svg.append("g")
 			.attr("class", "y axis")
@@ -72,7 +84,7 @@ d3.tsv("' . $liburl . 'data2.tsv", function(error, data) {
 			.attr("y", 6)
 			.attr("dy", ".71em")
 			.style("text-anchor", "end")
-			.text("Price ($)");
+			.text("' . $ylabel . '");
 
 	svg.append("path")
 			.datum(data)
