@@ -8,7 +8,7 @@ $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
 
-$id = 'visualization';
+$id = elgg_extract('id', $vars, 'd3js-line-chart');
 
 $content = '<div id="' . $id . '"></div>
 

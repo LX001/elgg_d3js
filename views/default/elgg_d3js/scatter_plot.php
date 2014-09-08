@@ -5,7 +5,9 @@ Taken from http://bl.ocks.org/mbostock/3887118#index.html
 
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 
-$content = '<div id="visualization"></div>
+$id = elgg_extract('id', $vars, 'd3js-scatter-plot');
+
+$content = '<div id="' . $id . '"></div>
 <style>
 
 body {
@@ -46,7 +48,7 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var svg = d3.select("body #visualization").append("svg")
+var svg = d3.select("body #' . $id . '").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
