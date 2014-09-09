@@ -61,8 +61,11 @@ d3.json("' . $dataurl . '", function(error, data) {
       .style("text-anchor", "middle")
       .text(function(d) { return d.data.name; });
 
+  g.append("title")
+      .text(function(d) { return d.data.name; });
 
-// Test ajout Nom au survol
+
+	// @TODO : Test ajout Nom au survol
 	var focus = svg.append("g")
 			.attr("class", "focus")
 			.style("display", "none");
@@ -82,7 +85,7 @@ d3.json("' . $dataurl . '", function(error, data) {
 	function mousemove() {
 		focus.select("text").text(function(d) { return d.data.name; });
 	}
-// Fin test
+	// Fin test
 
 });
 </script>';
