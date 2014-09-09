@@ -28,8 +28,6 @@ foreach($groups as $group) {
 */
 
 
-
-
 $content = '<script>
 var RadarChart = {
   draw: function(id, d, options){
@@ -243,6 +241,8 @@ var RadarChart = {
   }
 };
 </script>
+
+
 <style type="text/css">
 	#' . $id . ' {
 		top: 50px;
@@ -252,10 +252,9 @@ var RadarChart = {
 	#' . $id . ' > svg { border: 1px solid black; }
 </style>
 
-
 <div id="' . $id . '"></div>
 
-<script>	
+<script>
 	var w = ' . $size . ',
 	h = ' . $size . ';
 
@@ -301,7 +300,7 @@ var text = svg.append("text")
 	.attr("fill", "#404040")
 	.text("' . $description . '");
 		
-//Initiate Legend	
+//Initiate Legend
 var legend = svg.append("g")
 	.attr("class", "legend")
 	.attr("height", ' . ($size/6) . ')
@@ -333,3 +332,4 @@ var legend = svg.append("g")
 </script>';
 
 echo $content;
+

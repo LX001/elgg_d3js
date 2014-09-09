@@ -9,6 +9,7 @@ $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $width = elgg_extract('width', $vars, "400");
 $height = elgg_extract('height', $vars, "300");
 
+<<<<<<< HEAD
 
 $content = '
 <style type="text/css">
@@ -32,57 +33,19 @@ path{
 	color:rgb(150,148,109);
 	font-size:12px;
 }
+=======
+$id = elgg_extract('id', $vars, 'd3js-density-stack');
+>>>>>>> origin/master
 
 
-svg{
-	display:inline;
-	float:left;
-	margin-right:2%;
-}
-.legend{
-	display:inline-block;
-	margin:0 0 0 10px;
-	margin-left:0;
+$content = '
+<style type="text/css">
+.d3js-d3js_sdg .legend{
 	max-height:' . $height . 'px;
-	min-width:190px;
-	overflow:auto;
-}
-.legend table{
-	border-collapse:collapse;
-	border-spacing:0;
-}
-.legend tr, .legend td, .legend div{
-	margin:0;
-	padding:0;
-}
-.legend div{
-	width:20px;
-	height:20px;
-	float: left;
-}
-.legend span{
-	padding: 0 5px;
-	margin:0
-}
-.legend tr:hover{
-	background:silver;
-}
-.distquantdiv{
-	clear:both;
-	padding:10px;
-	overflow:hidden;
-	margin: 20px;
-}
-.distquantdiv h3{
-	padding-left: 40px;
-	margin-bottom:0;
-}
-.stat{
-	font-size:12px;
 }
 </style>
 
-<div id="contentDiv"></div>
+<div id="' . $id . '"></div>
 <script type="text/javascript" src="' . $liburl . 'SDGdata.js"></script>
 
 <script>
@@ -301,7 +264,7 @@ function drawAll(data, id){
 		
 	d3.range(data.length).forEach(function(d,i){ distQuant(dqData[i], "segment"+i );});
 }
-drawAll(dqData, "contentDiv");
+drawAll(dqData, "' . $id . '");
 
 </script>
 ';
