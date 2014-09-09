@@ -9,6 +9,7 @@ $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
 $width = elgg_extract('width', $vars, "400");
 $height = elgg_extract('height', $vars, "300");
 
+
 $content = '
 <style type="text/css">
 path{
@@ -302,6 +303,13 @@ function drawAll(data, id){
 }
 drawAll(dqData, "contentDiv");
 
-</script>';
-
-echo $content;
+</script>
+';
+$objets = get_registered_entity_types($group);
+$groups = elgg_get_entities(array('types' => 'group', 'limit' => 0));
+		foreach($groups as $group) {
+			$test = $group->getObjects("blog",0,0);
+			print_r($test);
+		}
+print_r($objets);
+//echo $content;

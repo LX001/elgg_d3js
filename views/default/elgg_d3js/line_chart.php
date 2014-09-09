@@ -1,10 +1,12 @@
 <?php
 
 /*
-Taken from http://bl.ocks.org/mbostock/3883245
+Taken from http://bl.ocks.org/mbostock/3902569
 */
 
 $liburl = $vars['url'] . 'mod/elgg_d3js/data/';
+
+
 $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 
 
@@ -39,8 +41,6 @@ $content = '	<div id="visualization"></div>
 }
 
 </style>
-<body>
-<script src="http://d3js.org/d3.v3.js"></script>
 <script>
 
 var margin = {top: 20, right: 50, bottom: 30, left: 50},
