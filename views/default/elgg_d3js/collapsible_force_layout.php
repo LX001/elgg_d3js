@@ -10,27 +10,11 @@ $dataurl = elgg_extract('dataurl', $vars, $vars['url'] . 'd3js/data');
 $width = elgg_extract('width', $vars, "1280");
 $height = elgg_extract('height', $vars, "800");
 
-$id = elgg_extract('id', $vars, 'd3js-scatter-plot');
+$id = elgg_extract('id', $vars, 'd3js-cfl');
 
 
-$content = '	<div id="' . $id . '"></div>
+$content = '<div id="' . $id . '"></div>
 
-<style type="text/css">
-
-circle.node {
-  cursor: pointer;
-  stroke: #000;
-  stroke-width: .5px;
-}
-
-line.link {
-  fill: none;
-  stroke: #9ecae1;
-  stroke-width: 1.5px;
-}
-
-</style>
-	
 <script type="text/javascript" src="' . $liburl . 'd3.geom.js"></script>
 <script type="text/javascript" src="' . $liburl . 'd3.layout.js"></script>
 <script type="text/javascript">
@@ -69,7 +53,7 @@ function update() {
       .links(links)
       .start();
 
-  // Update the links…
+  // Update the links
   link = vis.selectAll("line.link")
       .data(links, function(d) { return d.target.id; });
 
@@ -84,7 +68,7 @@ function update() {
   // Exit any old links.
   link.exit().remove();
 
-  // Update the nodes…
+  // Update the nodes
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
       .style("fill", color);
@@ -147,10 +131,7 @@ function flatten(root) {
   root.size = recurse(root);
   return nodes;
 }
-
-    </script>
-	';
-	
-	
+</script>';
 
 echo $content;
+

@@ -11,30 +11,12 @@ if(!isset($elgg_d3js_unique_id)) $elgg_d3js_unique_id = 1;
 else $elgg_d3js_unique_id++;
 $id = 'd3js_chart_' . $elgg_d3js_unique_id;
 
-$content = '	<div id="' . $id . '"></div>
-<style>
+$width = elgg_extract('width', $vars, "960");
 
-circle {
-  fill: rgb(31, 119, 180);
-  fill-opacity: .25;
-  stroke: rgb(31, 119, 180);
-  stroke-width: 1px;
-}
+$content = '<div id="' . $id . '"></div>
 
-.leaf circle {
-  fill: #ff7f0e;
-  fill-opacity: 1;
-}
-
-text {
-  font: 10px sans-serif;
-}
-
-</style>
-<body>
 <script>
-
-var diameter = 960,
+var diameter = ' . $width . ',
     format = d3.format(",d");
 
 var pack = d3.layout.pack()
@@ -67,43 +49,8 @@ d3.json("' . $dataurl . '", function(error, root) {
 });
 
 d3.select(self.frameElement).style("height", diameter + "px");
+</script>';
 
-</script>
-<style type="text/css">
-
-text {
-  font-size: 11px;
-  pointer-events: none;
-}
-
-text.parent {
-  fill: #1f77b4;
-}
-
-circle {
-  fill: #ccc;
-  stroke: #999;
-  pointer-events: all;
-}
-
-circle.parent {
-  fill: #1f77b4;
-  fill-opacity: .1;
-  stroke: steelblue;
-}
-
-circle.parent:hover {
-  stroke: #ff7f0e;
-  stroke-width: .5px;
-}
-
-circle.child {
-  pointer-events: none;
-}
-
-</style>
-'
-;
 echo $content;
 
 /* Zoomable version

@@ -11,17 +11,11 @@ if(!isset($elgg_d3js_unique_id)) $elgg_d3js_unique_id = 1;
 else $elgg_d3js_unique_id++;
 $id = 'd3js_chart_' . $elgg_d3js_unique_id;
 
+$width = elgg_extract('width', $vars, "960");
+
 $content = '<div id="' . $id . '"></div>
-<style>
-
-text {
-  font: 10px sans-serif;
-}
-
-</style>
 <script>
-
-var diameter = 960,
+var diameter = ' . $width . ',
     format = d3.format(",d"),
     color = d3.scale.category20c();
 
@@ -71,7 +65,6 @@ function classes(root) {
 
 d3.select(self.frameElement).style("height", diameter + "px");
 
-</script>'
-;
+</script>';
 
 echo $content;

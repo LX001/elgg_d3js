@@ -71,11 +71,18 @@ switch($viztype) {
 		$data[] = array(array("axis"=>"Email","value"=>0.48),array("axis"=>"Social Networks","value"=>0.41),array("axis"=>"Internet Banking","value"=>0.27),array("axis"=>"News Sportsites","value"=>0.28));
 		$data[] = array(array("axis"=>"Email","value"=>0.4),array("axis"=>"Social Networks","value"=>0.4),array("axis"=>"Internet Banking","value"=>0.2),array("axis"=>"News Sportsites","value"=>0.2));
 		$data = json_encode($data);
+		
+		// New set of data
+		$objects2 = json_encode(array("Object 1","Object 2"));
+		$data2[] = array(array("axis"=>"Criteria A","value"=>0.28),array("axis"=>"Criteria B","value"=>0.51),array("axis"=>"Criteria C","value"=>0.37),array("axis"=>"Criteria D","value"=>0.7),array("axis"=>"Criteria E","value"=>0.62),array("axis"=>"Criteria F","value"=>0.3),array("axis"=>"Criteria G","value"=>0.42));
+		$data2[] = array(array("axis"=>"Criteria A","value"=>0.4),array("axis"=>"Criteria B","value"=>0.29),array("axis"=>"Criteria C","value"=>0.15),array("axis"=>"Criteria D","value"=>0.8),array("axis"=>"Criteria E","value"=>0.35),array("axis"=>"Criteria F","value"=>0.4),array("axis"=>"Criteria G","value"=>0.5));
+		$data2 = json_encode($data2);
 
 		//Legend
 		$description = "Nombre de membres par groupe :";
 		$content = elgg_view('elgg_d3js/radar_chart', array('data' => $data,'objects' => $objects,'description' => $description, 'size' => 0.5));
-		$content .= elgg_view('elgg_d3js/radar_chart', array('data' => $data,'objects' => $objects,'description' => $description, 'size' => 0.5));
+		$description2 = "Radar générique multi-critères :";
+		$content .= elgg_view('elgg_d3js/radar_chart', array('data' => $data2,'objects' => $objects2,'description' => $description2, 'size' => 0.5));
 		break;
 	
 	case 'd3js_pie' :

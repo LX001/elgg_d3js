@@ -13,7 +13,7 @@ $id = elgg_extract('id', $vars, 'd3js-line-chart');
 // Axis labels
 $xlabel = elgg_extract('xlabel', $vars, 'Time');
 $ylabel = elgg_extract('ylabel', $vars, 'Value');
-// Dimensiosn
+// Dimensions
 $w = elgg_extract('width', $vars, 960);
 $h = elgg_extract('height', $vars, 500);
 
@@ -71,9 +71,9 @@ d3.tsv("' . $liburl . 'data2.tsv", function(error, data) {
 			.attr("transform", "translate(0," + height + ")")
 			.call(xAxis)
 		.append("text")
-			.attr("y", 20)
-			.attr("dx", "1em")
-			.style("text-anchor", "start")
+			.attr("x", width)
+			.attr("dy", -6)
+			.style("text-anchor", "end")
 			.text("' . $xlabel . '");
 
 	svg.append("g")
@@ -117,7 +117,7 @@ d3.tsv("' . $liburl . 'data2.tsv", function(error, data) {
 				d1 = data[i],
 				d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 		focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-		focus.select("text").text(formatCurrency(d.close));
+		focus.select("text").text(d.close);
 	}
 });
 </script>';
