@@ -15,20 +15,6 @@ $id = elgg_extract('id', $vars, 'd3js-cfl');
 
 $content = '<div id="' . $id . '"></div>
 
-<style type="text/css">
-circle.node {
-  cursor: pointer;
-  stroke: #000;
-  stroke-width: .5px;
-}
-
-line.link {
-  fill: none;
-  stroke: #9ecae1;
-  stroke-width: 1.5px;
-}
-</style>
-
 <script type="text/javascript" src="' . $liburl . 'd3.geom.js"></script>
 <script type="text/javascript" src="' . $liburl . 'd3.layout.js"></script>
 <script type="text/javascript">
