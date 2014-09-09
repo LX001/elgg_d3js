@@ -19,42 +19,6 @@ $ylabel = elgg_extract('ylabel', $vars, 'Value');
 $w = elgg_extract('width', $vars, 960);
 $h = elgg_extract('height', $vars, 500);
 
-<<<<<<< HEAD
-$content = '	<div id="visualization"></div>
-<style>
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-.overlay {
-  fill: none;
-  pointer-events: all;
-}
-
-.focus circle {
-  fill: none;
-  stroke: steelblue;
-}
-
-</style>
-<script>
-=======
->>>>>>> origin/master
-
 $content = '<div id="' . $id . '"></div>
 <script>
 var margin = {top: 20, right: 50, bottom: 30, left: 50},
